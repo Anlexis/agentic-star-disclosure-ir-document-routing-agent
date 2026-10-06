@@ -1,0 +1,16 @@
+# Runtime parameters — loaded by the agent registry and passed as Graph(config=...).
+# Separate from config/agent.yaml, which is the static manifest.
+
+# Retry budget for the backbone's routing decision.
+max_retry: 3
+# Request timeout in seconds, honoured by framework service clients.
+timeout_s: 30
+
+# Intake tuning. Forwarded to the classification workflow by
+# ClassifyRoutingGraphNode._parent_config() and republished into inner state by
+# DisclosureClassificationWorkflow._extra_initial_state(), where
+# ApplyRoutingRuleNode reads it.
+intake:
+  # Declared page count at or above which a filing is flagged for bulk review
+  # instead of the standard single-reviewer queue.
+  bulk_review_page_threshold: 500
